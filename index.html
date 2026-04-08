@@ -49,6 +49,7 @@ h2{margin-bottom:10px;color:#2D5A50}
 
 .card h3{margin:0 0 8px}
 .card p{font-size:14px;color:#666666}
+.precio{color:#2D5A50;font-weight:bold;margin-top:6px}
 
 /* BOTONES */
 .floating-buttons{
@@ -70,11 +71,59 @@ h2{margin-bottom:10px;color:#2D5A50}
 .instagram{background:#E1306C}
 .call{background:#2D5A50}
 
+
+
+/* MODAL */
+.modal{
+ position:fixed;
+ top:0;left:0;
+ width:100%;height:100%;
+ background:rgba(0,0,0,0.6);
+ display:none;
+ align-items:center;
+ justify-content:center;
+ z-index:2000;
+}
+
+.modal-content{
+ background:#FFFFFF;
+ padding:20px;
+ border-radius:15px;
+ max-width:320px;
+ text-align:center;
+}
+
+.modal-content img{
+ width:100%;
+ height:150px;
+ object-fit:cover;
+ border-radius:10px;
+ margin-bottom:10px;
+}
+
+.precio-modal{
+ color:#2D5A50;
+ font-weight:bold;
+ margin-top:5px;
+}
+
+.close{
+ margin-top:10px;
+ padding:8px 15px;
+ background:#2D5A50;
+ color:white;
+ border:none;
+ border-radius:5px;
+ cursor:pointer;
+}
+
+.card{cursor:pointer}
+
 </style>
 </head>
 <body>
 
-<header><h2>Cielo Esmeralda</h2></header>
+<header><h2>AeroGourmet Lounge ✈️</h2></header>
 
 <!-- TABS -->
 <div class="tabs">
@@ -89,50 +138,50 @@ h2{margin-bottom:10px;color:#2D5A50}
 <section id="entradas">
 <h2>Entradas</h2>
 <div class="slider">
-<div class="card"><h3>Guacamole</h3></div>
-<div class="card"><h3>Choriqueso</h3></div>
-<div class="card"><h3>Deditos de Queso</h3></div>
+<div class="card"><h3>Guacamole</h3><p class="precio">$125</p></div>
+<div class="card"><h3>Choriqueso</h3><p class="precio">$125</p></div>
+<div class="card"><h3>Deditos de Queso</h3><p class="precio">$110</p></div>
 </div>
 </section>
 
 <section id="fuertes">
 <h2>Platos Fuertes</h2>
 <div class="slider">
-<div class="card"><h3>Rib Eye</h3></div>
-<div class="card"><h3>Salmón</h3></div>
-<div class="card"><h3>Arrachera</h3></div>
+<div class="card"><h3>Rib Eye</h3><p class="precio">$330</p></div>
+<div class="card"><h3>Salmón</h3><p class="precio">$260</p></div>
+<div class="card"><h3>Arrachera</h3><p class="precio">$250</p></div>
 </div>
 </section>
 
 <section id="postres">
 <h2>Postres</h2>
 <div class="slider">
-<div class="card"><h3>Pie de Limón</h3></div>
-<div class="card"><h3>Flan</h3></div>
+<div class="card"><h3>Pie de Limón</h3><p class="precio">$85</p></div>
+<div class="card"><h3>Flan</h3><p class="precio">$75</p></div>
 </div>
 </section>
 
 <section id="bebidas">
 <h2>Bebidas</h2>
 <div class="slider">
-<div class="card"><h3>Café</h3></div>
-<div class="card"><h3>Jugo</h3></div>
+<div class="card"><h3>Café</h3><p class="precio">$45</p></div>
+<div class="card"><h3>Jugo</h3><p class="precio">$65</p></div>
 </div>
 </section>
 
 <section id="snacks">
 <h2>Snacks</h2>
 <div class="slider">
-<div class="card"><h3>Hamburguesa</h3></div>
-<div class="card"><h3>Alitas</h3></div>
+<div class="card"><h3>Hamburguesa</h3><p class="precio">$185</p></div>
+<div class="card"><h3>Alitas</h3><p class="precio">$140</p></div>
 </div>
 </section>
 
 <section id="desayunos">
 <h2>Desayunos</h2>
 <div class="slider">
-<div class="card"><h3>Hot Cakes</h3></div>
-<div class="card"><h3>Omelette</h3></div>
+<div class="card"><h3>Hot Cakes</h3><p class="precio">$115</p></div>
+<div class="card"><h3>Omelette</h3><p class="precio">$145</p></div>
 </div>
 </section>
 
@@ -149,6 +198,63 @@ function scrollToSection(id){
 
  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
  event.target.classList.add('active');
+}
+</script>
+
+
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+ <div class="modal-content">
+  <img id="modal-img" src="" />
+  <h3 id="modal-title"></h3>
+  <p id="modal-desc"></p>
+  <p class="precio-modal" id="modal-price"></p>
+  <button class="close" onclick="closeModal()">Cerrar</button>
+ </div>
+</div>
+
+<script>
+function scrollToSection(id){
+ document.getElementById(id).scrollIntoView({behavior:'smooth'});
+ document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+ event.target.classList.add('active');
+}
+
+// DATOS DE PLATILLOS
+const menuData = {
+ "Guacamole":{desc:"Aguacate martajado con jitomate, cebolla y chile serrano.",price:"$125",img:"https://images.unsplash.com/photo-1604908176997-125f25cc6f3d"},
+ "Choriqueso":{desc:"Queso oaxaca gratinado con chorizo.",price:"$125",img:"https://images.unsplash.com/photo-1568901346375-23c9450c58cd"},
+ "Deditos de Queso":{desc:"Deditos de queso crujientes.",price:"$110",img:"https://images.unsplash.com/photo-1585238342024-78d387f4a707"},
+ "Rib Eye":{desc:"Corte premium a la plancha.",price:"$330",img:"https://images.unsplash.com/photo-1600891964092-4316c288032e"},
+ "Salmón":{desc:"Filete de salmón con guarnición.",price:"$260",img:"https://images.unsplash.com/photo-1504674900247-0877df9cc836"},
+ "Arrachera":{desc:"Corte jugoso con guarnición.",price:"$250",img:"https://images.unsplash.com/photo-1550547660-d9450f859349"},
+ "Pie de Limón":{desc:"Postre con frutos rojos.",price:"$85",img:"https://images.unsplash.com/photo-1563805042-7684c019e1cb"},
+ "Flan":{desc:"Flan napolitano.",price:"$75",img:"https://images.unsplash.com/photo-1606313564200-e75d5e30476c"},
+ "Café":{desc:"Bebida caliente.",price:"$45",img:"https://images.unsplash.com/photo-1509042239860-f550ce710b93"},
+ "Jugo":{desc:"Bebida natural.",price:"$65",img:"https://images.unsplash.com/photo-1551024709-8f23befc6d6f"},
+ "Hamburguesa":{desc:"Hamburguesa con ingredientes premium.",price:"$185",img:"https://images.unsplash.com/photo-1568901346375-23c9450c58cd"},
+ "Alitas":{desc:"Alitas con aderezo ranch.",price:"$140",img:"https://images.unsplash.com/photo-1604908177315-746dbe1f6a4f"},
+ "Hot Cakes":{desc:"Hot cakes con toppings.",price:"$115",img:"https://images.unsplash.com/photo-1550317138-10000687a72b"},
+ "Omelette":{desc:"Omelette al gusto.",price:"$145",img:"https://images.unsplash.com/photo-1512058564366-c9e3e04648a4"}
+};
+
+// EVENTO CLICK
+
+document.querySelectorAll('.card').forEach(card=>{
+ card.addEventListener('click',()=>{
+  const title = card.innerText.trim();
+  const data = menuData[title];
+  document.getElementById('modal-title').innerText = title;
+  document.getElementById('modal-desc').innerText = data?.desc || "Descripción no disponible";
+  document.getElementById('modal-price').innerText = data?.price || "";
+  document.getElementById('modal-img').src = data?.img || "";
+  document.getElementById('modal').style.display = 'flex';
+ });
+});
+
+function closeModal(){
+ document.getElementById('modal').style.display='none';
 }
 </script>
 
