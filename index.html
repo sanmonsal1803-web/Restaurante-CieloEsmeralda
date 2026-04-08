@@ -4,188 +4,166 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AeroGourmet Lounge</title>
-
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:'Segoe UI',sans-serif;background:#F2F2F2;color:#333333}
-header{position:fixed;width:100%;top:0;background:#2D5A50;color:white;padding:12px;text-align:center;z-index:1000}
-
-/* TABS */
-.tabs{
- position:sticky;
- top:48px;
- background:#FFFFFF;
- display:flex;
- overflow-x:auto;
- border-bottom:1px solid #E0E0E0;
- z-index:999;
-}
-
-.tab{
- padding:12px 15px;
- cursor:pointer;
- white-space:nowrap;
- color:#666666;
-}
-
-.tab.active{
- color:#2D5A50;
- border-bottom:3px solid #2D5A50;
- font-weight:bold;
-}
-
-section{padding:70px 15px}
-h2{margin-bottom:10px;color:#2D5A50}
-
-.slider{display:flex;overflow-x:auto;gap:15px;padding:10px}
-
-.card{
- min-width:260px;
- background:#FFFFFF;
- border-radius:15px;
- padding:15px;
- border:1px solid #E0E0E0;
-}
-
-.card h3{margin:0 0 8px}
-.card p{font-size:14px;color:#666666}
-.precio{color:#2D5A50;font-weight:bold;margin-top:6px}
-
-/* BOTONES */
-.floating-buttons{
- position:fixed;
- bottom:20px;
- right:15px;
- display:flex;
- flex-direction:column;
- gap:10px;
- z-index:1000;
-}
-
-.floating-buttons a{
- width:50px;height:50px;display:flex;align-items:center;justify-content:center;
- border-radius:50%;color:white;font-size:20px;text-decoration:none;
-}
-
-.whatsapp{background:#25D366}
-.instagram{background:#E1306C}
-.call{background:#2D5A50}
-
-
-
-/* MODAL */
-.modal{
- position:fixed;
- top:0;left:0;
- width:100%;height:100%;
- background:rgba(0,0,0,0.6);
- display:none;
- align-items:center;
- justify-content:center;
- z-index:2000;
-}
-
-.modal-content{
- background:#FFFFFF;
- padding:20px;
- border-radius:15px;
- max-width:320px;
- text-align:center;
-}
-
-.modal-content img{
- width:100%;
- height:150px;
- object-fit:cover;
- border-radius:10px;
- margin-bottom:10px;
-}
-
-.precio-modal{
- color:#2D5A50;
- font-weight:bold;
- margin-top:5px;
-}
-
-.close{
- margin-top:10px;
- padding:8px 15px;
- background:#2D5A50;
- color:white;
- border:none;
- border-radius:5px;
- cursor:pointer;
-}
-
-.card{cursor:pointer}
-
+body{margin:0;font-family:'Inter',sans-serif;background:#F2F2F2;color:#333}
+header{position:fixed;width:100%;top:0;background:#2D5A50;color:#fff;padding:14px;text-align:center;z-index:1000;font-family:'Playfair Display',serif}
+.tabs{position:sticky;top:52px;background:#fff;display:flex;overflow-x:auto;border-bottom:1px solid #E0E0E0;z-index:999}
+.tab{padding:10px 14px;cursor:pointer;color:#666;font-size:13px;white-space:nowrap}
+.tab.active{color:#2D5A50;border-bottom:2px solid #2D5A50;font-weight:500}
+section{padding:70px 20px 30px;background:#fff;margin-bottom:8px}
+h2{font-family:'Playfair Display',serif;color:#2D5A50;font-size:20px;margin-bottom:15px;border-bottom:1px solid #E0E0E0;padding-bottom:8px}
+.menu-grid{display:grid;grid-template-columns:1fr;gap:6px}
+@media(min-width:768px){.menu-grid{grid-template-columns:1fr 1fr}}
+.item{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #E0E0E0;cursor:pointer}
+.item:hover{background:#fafafa}
+.item-price{color:#2D5A50;font-weight:500}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:2000}
+.modal-content{background:#fff;padding:20px;border-radius:6px;max-width:360px;text-align:center}
+.modal-content img{width:100%;height:160px;object-fit:cover;border-radius:4px;margin-bottom:10px}
+.precio-modal{color:#2D5A50;font-weight:700}
+.close{margin-top:10px;padding:8px 15px;background:#2D5A50;color:#fff;border:none;border-radius:4px;cursor:pointer}
+.floating-buttons{position:fixed;bottom:20px;right:15px;display:flex;flex-direction:column;gap:10px}
+.floating-buttons a{width:46px;height:46px;display:flex;align-items:center;justify-content:center;border-radius:50%;color:#fff;text-decoration:none}
+.whatsapp{background:#25D366}.instagram{background:#E1306C}.call{background:#2D5A50}
 </style>
 </head>
 <body>
-
-<header><h2>AeroGourmet Lounge ✈️</h2></header>
-
-<!-- TABS -->
+<header>AeroGourmet Lounge ✈️</header>
 <div class="tabs">
-<div class="tab active" onclick="scrollToSection('entradas')">Entradas</div>
-<div class="tab" onclick="scrollToSection('fuertes')">Fuertes</div>
-<div class="tab" onclick="scrollToSection('postres')">Postres</div>
-<div class="tab" onclick="scrollToSection('bebidas')">Bebidas</div>
-<div class="tab" onclick="scrollToSection('snacks')">Snacks</div>
-<div class="tab" onclick="scrollToSection('desayunos')">Desayunos</div>
+<div class="tab active" onclick="scrollToSection('entradas', this)">Entradas</div>
+<div class="tab" onclick="scrollToSection('fuertes', this)">Fuertes</div>
+<div class="tab" onclick="scrollToSection('postres', this)">Postres</div>
+<div class="tab" onclick="scrollToSection('bebidascal', this)">Bebidas Calientes</div>
+<div class="tab" onclick="scrollToSection('snacks', this)">Snacks</div>
+<div class="tab" onclick="scrollToSection('ensaladas', this)">Ensaladas</div>
+<div class="tab" onclick="scrollToSection('sopas', this)">Sopas</div>
+<div class="tab" onclick="scrollToSection('baguettes', this)">Baguettes</div>
+<div class="tab" onclick="scrollToSection('antojitos', this)">Antojitos</div>
+<div class="tab" onclick="scrollToSection('bebidasfr', this)">Bebidas Frías</div>
+<div class="tab" onclick="scrollToSection('desayunos', this)">Desayunos</div>
 </div>
 
-<section id="entradas">
-<h2>Entradas</h2>
-<div class="slider">
-<div class="card"><h3>Guacamole</h3><p class="precio">$125</p></div>
-<div class="card"><h3>Choriqueso</h3><p class="precio">$125</p></div>
-<div class="card"><h3>Deditos de Queso</h3><p class="precio">$110</p></div>
-</div>
-</section>
+<section id="entradas"><h2>Entradas</h2><div class="menu-grid">
+<div class="item" data-name="Guacamole"><span>Guacamole</span><span class="item-price">$125</span></div>
+<div class="item" data-name="Choriqueso"><span>Choriqueso</span><span class="item-price">$125</span></div>
+<div class="item" data-name="Deditos De Queso"><span>Deditos De Queso</span><span class="item-price">$110</span></div>
+<div class="item" data-name="Tabla Gourmet Esmeralda"><span>Tabla Gourmet Esmeralda</span><span class="item-price">$290</span></div>
+<div class="item" data-name="Papas A La Francesa"><span>Papas A La Francesa</span><span class="item-price">$75</span></div>
+<div class="item" data-name="Sopes"><span>Sopes</span><span class="item-price">$110</span></div>
+</div></section>
 
-<section id="fuertes">
-<h2>Platos Fuertes</h2>
-<div class="slider">
-<div class="card"><h3>Rib Eye</h3><p class="precio">$330</p></div>
-<div class="card"><h3>Salmón</h3><p class="precio">$260</p></div>
-<div class="card"><h3>Arrachera</h3><p class="precio">$250</p></div>
-</div>
-</section>
+<section id="fuertes"><h2>Platos Fuertes</h2><div class="menu-grid">
+<div class="item" data-name="Rib Eye"><span>Rib Eye</span><span class="item-price">$330</span></div>
+<div class="item" data-name="Pechuga A Las Finas Hierbas"><span>Pechuga A Las Finas Hierbas</span><span class="item-price">$160</span></div>
+<div class="item" data-name="Salmón"><span>Salmón</span><span class="item-price">$260</span></div>
+<div class="item" data-name="Jitomates Rellenos De Atún Con Verduras"><span>Jitomates Rellenos De Atún</span><span class="item-price">$145</span></div>
+<div class="item" data-name="Fajitas De Pollo"><span>Fajitas De Pollo</span><span class="item-price">$160</span></div>
+<div class="item" data-name="Espagueti Alfredo"><span>Espagueti Alfredo</span><span class="item-price">$140</span></div>
+<div class="item" data-name="Espagueti Bolognesa"><span>Espagueti Bolognesa</span><span class="item-price">$150</span></div>
+<div class="item" data-name="Pollo Con Mole"><span>Pollo Con Mole</span><span class="item-price">$155</span></div>
+<div class="item" data-name="Aguacate Relleno De Atún"><span>Aguacate Relleno De Atún</span><span class="item-price">$145</span></div>
+<div class="item" data-name="Milanesa De Pollo"><span>Milanesa De Pollo</span><span class="item-price">$160</span></div>
+<div class="item" data-name="Tampiqueña"><span>Tampiqueña</span><span class="item-price">$245</span></div>
+<div class="item" data-name="New York"><span>New York</span><span class="item-price">$330</span></div>
+<div class="item" data-name="Filete De Pescado A La Plancha"><span>Filete De Pescado</span><span class="item-price">$160</span></div>
+<div class="item" data-name="Milanesa De Res"><span>Milanesa De Res</span><span class="item-price">$160</span></div>
+<div class="item" data-name="Cecina"><span>Cecina</span><span class="item-price">$195</span></div>
+<div class="item" data-name="Quesadillas De Arrachera 3 Piezas"><span>Quesadillas Arrachera</span><span class="item-price">$160</span></div>
+<div class="item" data-name="Arrachera"><span>Arrachera</span><span class="item-price">$250</span></div>
+</div></section>
 
-<section id="postres">
-<h2>Postres</h2>
-<div class="slider">
-<div class="card"><h3>Pie de Limón</h3><p class="precio">$85</p></div>
-<div class="card"><h3>Flan</h3><p class="precio">$75</p></div>
-</div>
-</section>
+<section id="postres"><h2>Postres</h2><div class="menu-grid">
+<div class="item" data-name="Pie De Limón"><span>Pie De Limón</span><span class="item-price">$85</span></div>
+<div class="item" data-name="Pastel De Chocolate"><span>Pastel De Chocolate</span><span class="item-price">$95</span></div>
+<div class="item" data-name="Plátanos Fritos"><span>Plátanos Fritos</span><span class="item-price">$80</span></div>
+<div class="item" data-name="Flan Napolitano"><span>Flan Napolitano</span><span class="item-price">$75</span></div>
+<div class="item" data-name="Pan De Elote"><span>Pan De Elote</span><span class="item-price">$85</span></div>
+<div class="item" data-name="Crepas"><span>Crepas</span><span class="item-price">$90</span></div>
+</div></section>
 
-<section id="bebidas">
-<h2>Bebidas</h2>
-<div class="slider">
-<div class="card"><h3>Café</h3><p class="precio">$45</p></div>
-<div class="card"><h3>Jugo</h3><p class="precio">$65</p></div>
-</div>
-</section>
+<section id="bebidascal"><h2>Bebidas Calientes</h2><div class="menu-grid">
+<div class="item" data-name="Café Americano"><span>Café Americano</span><span class="item-price">$45</span></div>
+<div class="item" data-name="Café De Olla"><span>Café De Olla</span><span class="item-price">$45</span></div>
+<div class="item" data-name="Capuchino"><span>Capuchino</span><span class="item-price">$65</span></div>
+</div></section>
 
-<section id="snacks">
-<h2>Snacks</h2>
-<div class="slider">
-<div class="card"><h3>Hamburguesa</h3><p class="precio">$185</p></div>
-<div class="card"><h3>Alitas</h3><p class="precio">$140</p></div>
-</div>
-</section>
+<section id="snacks"><h2>Snacks y Burgers</h2><div class="menu-grid">
+<div class="item" data-name="Hamburguesa Esmeralda"><span>Hamburguesa Esmeralda</span><span class="item-price">$185</span></div>
+<div class="item" data-name="Boneless"><span>Boneless</span><span class="item-price">$145</span></div>
+<div class="item" data-name="Alitas"><span>Alitas</span><span class="item-price">$140</span></div>
+<div class="item" data-name="Club Sandwich"><span>Club Sandwich</span><span class="item-price">$155</span></div>
+<div class="item" data-name="Hamburguesa Guacamole"><span>Hamburguesa Guacamole</span><span class="item-price">$175</span></div>
+<div class="item" data-name="Hamburguesa Hawaiana"><span>Hamburguesa Hawaiana</span><span class="item-price">$165</span></div>
+<div class="item" data-name="Hot Dog Jumbo"><span>Hot Dog Jumbo</span><span class="item-price">$115</span></div>
+</div></section>
 
-<section id="desayunos">
-<h2>Desayunos</h2>
-<div class="slider">
-<div class="card"><h3>Hot Cakes</h3><p class="precio">$115</p></div>
-<div class="card"><h3>Omelette</h3><p class="precio">$145</p></div>
-</div>
-</section>
+<section id="ensaladas"><h2>Ensaladas</h2><div class="menu-grid">
+<div class="item" data-name="Ensalada César Con Pollo"><span>Ensalada César Con Pollo</span><span class="item-price">$155</span></div>
+<div class="item" data-name="Ensalada Verde"><span>Ensalada Verde</span><span class="item-price">$135</span></div>
+<div class="item" data-name="Ensalada De Frutos Rojos"><span>Ensalada De Frutos Rojos</span><span class="item-price">$165</span></div>
+</div></section>
 
-<!-- BOTONES -->
+<section id="sopas"><h2>Sopas y Cremas</h2><div class="menu-grid">
+<div class="item" data-name="Sopa De Cebolla"><span>Sopa De Cebolla</span><span class="item-price">$105</span></div>
+<div class="item" data-name="Caldo Tlalpeño"><span>Caldo Tlalpeño</span><span class="item-price">$110</span></div>
+<div class="item" data-name="Consomé De Pollo"><span>Consomé De Pollo</span><span class="item-price">$95</span></div>
+<div class="item" data-name="Sopa De Tortilla"><span>Sopa De Tortilla</span><span class="item-price">$105</span></div>
+<div class="item" data-name="Sopa De Pasta"><span>Sopa De Pasta</span><span class="item-price">$75</span></div>
+<div class="item" data-name="Fideo Seco"><span>Fideo Seco</span><span class="item-price">$105</span></div>
+<div class="item" data-name="Crema Esmeralda"><span>Crema Esmeralda</span><span class="item-price">$105</span></div>
+<div class="item" data-name="Jugo De Carne"><span>Jugo De Carne</span><span class="item-price">$135</span></div>
+<div class="item" data-name="Arroz De La Abuela"><span>Arroz De La Abuela</span><span class="item-price">$85</span></div>
+</div></section>
+
+<section id="baguettes"><h2>Baguettes y Ciabattas</h2><div class="menu-grid">
+<div class="item" data-name="Baguette Esmeralda"><span>Baguette Esmeralda</span><span class="item-price">$135</span></div>
+<div class="item" data-name="Ciabatta"><span>Ciabatta</span><span class="item-price">$165</span></div>
+<div class="item" data-name="Baguette Clásico"><span>Baguette Clásico</span><span class="item-price">$115</span></div>
+<div class="item" data-name="Pepito De Arrachera"><span>Pepito De Arrachera</span><span class="item-price">$185</span></div>
+</div></section>
+
+<section id="antojitos"><h2>Antojitos Esmeralda</h2><div class="menu-grid">
+<div class="item" data-name="Chilaquiles"><span>Chilaquiles</span><span class="item-price">$125+</span></div>
+<div class="item" data-name="Enchiladas Blancas De Habanero"><span>Enchiladas Blancas</span><span class="item-price">$155</span></div>
+<div class="item" data-name="Enmoladas"><span>Enmoladas</span><span class="item-price">$155</span></div>
+<div class="item" data-name="Huarache"><span>Huarache</span><span class="item-price">$145</span></div>
+<div class="item" data-name="Cochinita (Tacos)"><span>Cochinita</span><span class="item-price">$135</span></div>
+<div class="item" data-name="Encobijadas"><span>Encobijadas</span><span class="item-price">$185</span></div>
+<div class="item" data-name="Huarache De Nopal"><span>Huarache De Nopal</span><span class="item-price">$135</span></div>
+<div class="item" data-name="Enchiladas Veracruzanas"><span>Enchiladas Veracruzanas</span><span class="item-price">$155</span></div>
+<div class="item" data-name="Enchiladas"><span>Enchiladas</span><span class="item-price">$145</span></div>
+<div class="item" data-name="Enchiladas Suizas"><span>Enchiladas Suizas</span><span class="item-price">$165</span></div>
+<div class="item" data-name="Tacos Dorados"><span>Tacos Dorados</span><span class="item-price">$125</span></div>
+<div class="item" data-name="Tostada"><span>Tostada</span><span class="item-price">$55</span></div>
+</div></section>
+
+<section id="bebidasfr"><h2>Bebidas Frías</h2><div class="menu-grid">
+<div class="item" data-name="Jugos"><span>Jugos</span><span class="item-price">$65</span></div>
+<div class="item" data-name="Malteada"><span>Malteada</span><span class="item-price">$95</span></div>
+<div class="item" data-name="Limonada"><span>Limonada / Naranjada</span><span class="item-price">$55</span></div>
+</div></section>
+
+<section id="desayunos"><h2>Desayunos</h2><div class="menu-grid">
+<div class="item" data-name="Omelette De Claras Y Espinaca"><span>Omelette De Claras</span><span class="item-price">$145</span></div>
+<div class="item" data-name="Croissant Con Jamón Y Queso"><span>Croissant Jamón</span><span class="item-price">$135</span></div>
+<div class="item" data-name="Huevos Al Gusto"><span>Huevos Al Gusto</span><span class="item-price">$125</span></div>
+<div class="item" data-name="Hojaldra De Mole Con Pollo"><span>Hojaldra De Mole</span><span class="item-price">$115</span></div>
+<div class="item" data-name="Huevos Esmeralda"><span>Huevos Esmeralda</span><span class="item-price">$145</span></div>
+<div class="item" data-name="Pan Francés"><span>Pan Francés</span><span class="item-price">$125</span></div>
+<div class="item" data-name="Hot Cakes"><span>Hot Cakes</span><span class="item-price">$115</span></div>
+<div class="item" data-name="Molletes Esmeralda"><span>Molletes Esmeralda</span><span class="item-price">$145</span></div>
+<div class="item" data-name="Sincronizada Con Papas"><span>Sincronizada</span><span class="item-price">$125</span></div>
+<div class="item" data-name="Pan Tostado Con Aguacate"><span>Pan Tostado Aguacate</span><span class="item-price">$145</span></div>
+</div></section>
+
+<div class="modal" id="modal"><div class="modal-content">
+<img id="modal-img" src=""><h3 id="modal-title"></h3>
+<p id="modal-desc"></p><p class="precio-modal" id="modal-price"></p>
+<button class="close" onclick="closeModal()">Cerrar</button>
+</div></div>
+
 <div class="floating-buttons">
 <a href="https://wa.me/521XXXXXXXXXX" class="whatsapp">💬</a>
 <a href="https://instagram.com/tuusuario" class="instagram">📸</a>
@@ -193,70 +171,31 @@ h2{margin-bottom:10px;color:#2D5A50}
 </div>
 
 <script>
-function scrollToSection(id){
- document.getElementById(id).scrollIntoView({behavior:'smooth'});
-
- document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
- event.target.classList.add('active');
-}
-</script>
-
-
-
-<!-- MODAL -->
-<div class="modal" id="modal">
- <div class="modal-content">
-  <img id="modal-img" src="" />
-  <h3 id="modal-title"></h3>
-  <p id="modal-desc"></p>
-  <p class="precio-modal" id="modal-price"></p>
-  <button class="close" onclick="closeModal()">Cerrar</button>
- </div>
-</div>
-
-<script>
-function scrollToSection(id){
+function scrollToSection(id, el){
  document.getElementById(id).scrollIntoView({behavior:'smooth'});
  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
- event.target.classList.add('active');
+ el.classList.add('active');
 }
 
-// DATOS DE PLATILLOS
-const menuData = {
- "Guacamole":{desc:"Aguacate martajado con jitomate, cebolla y chile serrano.",price:"$125",img:"https://images.unsplash.com/photo-1604908176997-125f25cc6f3d"},
- "Choriqueso":{desc:"Queso oaxaca gratinado con chorizo.",price:"$125",img:"https://images.unsplash.com/photo-1568901346375-23c9450c58cd"},
- "Deditos de Queso":{desc:"Deditos de queso crujientes.",price:"$110",img:"https://images.unsplash.com/photo-1585238342024-78d387f4a707"},
- "Rib Eye":{desc:"Corte premium a la plancha.",price:"$330",img:"https://images.unsplash.com/photo-1600891964092-4316c288032e"},
- "Salmón":{desc:"Filete de salmón con guarnición.",price:"$260",img:"https://images.unsplash.com/photo-1504674900247-0877df9cc836"},
- "Arrachera":{desc:"Corte jugoso con guarnición.",price:"$250",img:"https://images.unsplash.com/photo-1550547660-d9450f859349"},
- "Pie de Limón":{desc:"Postre con frutos rojos.",price:"$85",img:"https://images.unsplash.com/photo-1563805042-7684c019e1cb"},
- "Flan":{desc:"Flan napolitano.",price:"$75",img:"https://images.unsplash.com/photo-1606313564200-e75d5e30476c"},
- "Café":{desc:"Bebida caliente.",price:"$45",img:"https://images.unsplash.com/photo-1509042239860-f550ce710b93"},
- "Jugo":{desc:"Bebida natural.",price:"$65",img:"https://images.unsplash.com/photo-1551024709-8f23befc6d6f"},
- "Hamburguesa":{desc:"Hamburguesa con ingredientes premium.",price:"$185",img:"https://images.unsplash.com/photo-1568901346375-23c9450c58cd"},
- "Alitas":{desc:"Alitas con aderezo ranch.",price:"$140",img:"https://images.unsplash.com/photo-1604908177315-746dbe1f6a4f"},
- "Hot Cakes":{desc:"Hot cakes con toppings.",price:"$115",img:"https://images.unsplash.com/photo-1550317138-10000687a72b"},
- "Omelette":{desc:"Omelette al gusto.",price:"$145",img:"https://images.unsplash.com/photo-1512058564366-c9e3e04648a4"}
-};
+// Datos (usar claves EXACTAS a data-name)
+const menuData = {};
+// Relleno genérico automático para cualquier item (fallback)
+function getData(name){
+ return menuData[name] || {desc:`${name} preparado con ingredientes de alta calidad.`, price:'', img:'https://images.unsplash.com/photo-1504674900247-0877df9cc836'};
+}
 
-// EVENTO CLICK
-
-document.querySelectorAll('.card').forEach(card=>{
- card.addEventListener('click',()=>{
-  const title = card.innerText.trim();
-  const data = menuData[title];
-  document.getElementById('modal-title').innerText = title;
-  document.getElementById('modal-desc').innerText = data?.desc || "Descripción no disponible";
-  document.getElementById('modal-price').innerText = data?.price || "";
-  document.getElementById('modal-img').src = data?.img || "";
-  document.getElementById('modal').style.display = 'flex';
+document.querySelectorAll('.item').forEach(item=>{
+ item.addEventListener('click',()=>{
+  const key=item.dataset.name;
+  const data=getData(key);
+  document.getElementById('modal-title').innerText=key;
+  document.getElementById('modal-desc').innerText=data.desc;
+  document.getElementById('modal-price').innerText=data.price || item.querySelector('.item-price').innerText;
+  document.getElementById('modal-img').src=data.img;
+  document.getElementById('modal').style.display='flex';
  });
 });
-
-function closeModal(){
- document.getElementById('modal').style.display='none';
-}
+function closeModal(){document.getElementById('modal').style.display='none'}
 </script>
-
 </body>
 </html>
