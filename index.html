@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AeroGourmet Lounge</title>
+
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:'Segoe UI',sans-serif;background:#F2F2F2;color:#333333}
+header{position:fixed;width:100%;top:0;background:#2D5A50;color:white;padding:12px;text-align:center;z-index:1000}
+
+/* TABS */
+.tabs{
+ position:sticky;
+ top:48px;
+ background:#FFFFFF;
+ display:flex;
+ overflow-x:auto;
+ border-bottom:1px solid #E0E0E0;
+ z-index:999;
+}
+
+.tab{
+ padding:12px 15px;
+ cursor:pointer;
+ white-space:nowrap;
+ color:#666666;
+}
+
+.tab.active{
+ color:#2D5A50;
+ border-bottom:3px solid #2D5A50;
+ font-weight:bold;
+}
+
+section{padding:70px 15px}
+h2{margin-bottom:10px;color:#2D5A50}
+
+.slider{display:flex;overflow-x:auto;gap:15px;padding:10px}
+
+.card{
+ min-width:260px;
+ background:#FFFFFF;
+ border-radius:15px;
+ padding:15px;
+ border:1px solid #E0E0E0;
+}
+
+.card h3{margin:0 0 8px}
+.card p{font-size:14px;color:#666666}
+
+/* BOTONES */
+.floating-buttons{
+ position:fixed;
+ bottom:20px;
+ right:15px;
+ display:flex;
+ flex-direction:column;
+ gap:10px;
+ z-index:1000;
+}
+
+.floating-buttons a{
+ width:50px;height:50px;display:flex;align-items:center;justify-content:center;
+ border-radius:50%;color:white;font-size:20px;text-decoration:none;
+}
+
+.whatsapp{background:#25D366}
+.instagram{background:#E1306C}
+.call{background:#2D5A50}
+
+</style>
+</head>
+<body>
+
+<header><h2>Cielo Esmeralda</h2></header>
+
+<!-- TABS -->
+<div class="tabs">
+<div class="tab active" onclick="scrollToSection('entradas')">Entradas</div>
+<div class="tab" onclick="scrollToSection('fuertes')">Fuertes</div>
+<div class="tab" onclick="scrollToSection('postres')">Postres</div>
+<div class="tab" onclick="scrollToSection('bebidas')">Bebidas</div>
+<div class="tab" onclick="scrollToSection('snacks')">Snacks</div>
+<div class="tab" onclick="scrollToSection('desayunos')">Desayunos</div>
+</div>
+
+<section id="entradas">
+<h2>Entradas</h2>
+<div class="slider">
+<div class="card"><h3>Guacamole</h3></div>
+<div class="card"><h3>Choriqueso</h3></div>
+<div class="card"><h3>Deditos de Queso</h3></div>
+</div>
+</section>
+
+<section id="fuertes">
+<h2>Platos Fuertes</h2>
+<div class="slider">
+<div class="card"><h3>Rib Eye</h3></div>
+<div class="card"><h3>Salmón</h3></div>
+<div class="card"><h3>Arrachera</h3></div>
+</div>
+</section>
+
+<section id="postres">
+<h2>Postres</h2>
+<div class="slider">
+<div class="card"><h3>Pie de Limón</h3></div>
+<div class="card"><h3>Flan</h3></div>
+</div>
+</section>
+
+<section id="bebidas">
+<h2>Bebidas</h2>
+<div class="slider">
+<div class="card"><h3>Café</h3></div>
+<div class="card"><h3>Jugo</h3></div>
+</div>
+</section>
+
+<section id="snacks">
+<h2>Snacks</h2>
+<div class="slider">
+<div class="card"><h3>Hamburguesa</h3></div>
+<div class="card"><h3>Alitas</h3></div>
+</div>
+</section>
+
+<section id="desayunos">
+<h2>Desayunos</h2>
+<div class="slider">
+<div class="card"><h3>Hot Cakes</h3></div>
+<div class="card"><h3>Omelette</h3></div>
+</div>
+</section>
+
+<!-- BOTONES -->
+<div class="floating-buttons">
+<a href="https://wa.me/521XXXXXXXXXX" class="whatsapp">💬</a>
+<a href="https://instagram.com/tuusuario" class="instagram">📸</a>
+<a href="tel:+521XXXXXXXXXX" class="call">📞</a>
+</div>
+
+<script>
+function scrollToSection(id){
+ document.getElementById(id).scrollIntoView({behavior:'smooth'});
+
+ document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+ event.target.classList.add('active');
+}
+</script>
+
+</body>
+</html>
