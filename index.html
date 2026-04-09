@@ -8,6 +8,42 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
+
+ /* BOTONES RESPONSIVOS */
+.hero-buttons{
+ margin-top:25px;
+ display:flex;
+ gap:12px;
+ justify-content:center;
+ flex-wrap:wrap;
+}
+
+.hero-buttons a{
+ padding:10px 18px;
+ font-size:13px;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ gap:6px;
+ border-radius:4px;
+ width:130px;
+ text-align:center;
+}
+
+/* 📱 MODO CELULAR */
+@media(max-width:480px){
+ .hero h1{font-size:28px}
+ .hero p{font-size:14px}
+
+ .hero-buttons{
+  flex-direction:column;
+  align-items:center;
+ }
+
+ .hero-buttons a{
+  width:80%;
+ }
+}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;font-family:'Inter',sans-serif;background:#F2F2F2;color:#333}
@@ -108,7 +144,7 @@ h2{
   <h1>Alta Cocina en el Aire</h1>
   <p>Experiencia gastronómica premium en aeropuerto privado</p>
   <button onclick="scrollToSection('entradas')">Ver Menú</button>
-  <div style="margin-top:25px; display:flex; gap:15px; justify-content:center;">
+  <div class="hero-buttons">
    <!-- WhatsApp -->
   <a href="https://wa.me/521XXXXXXXXXX" 
      style="padding:12px 22px; background:#25D366; color:white; text-decoration:none; font-size:14px; display:flex; align-items:center; gap:8px; border-radius:4px; transition:all .3s ease;"
